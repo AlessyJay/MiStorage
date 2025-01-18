@@ -9,16 +9,16 @@ const backgroundImage = "https://images.ui8.net/uploads/8_1697469595507.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
-      <div className="absolute inset-0 hero-gradient" />
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-900">
+      <div className="hero-gradient absolute inset-0" />
 
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-20 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl" />
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl" />
+      <div className="absolute left-0 top-0 size-full">
+        <div className="absolute left-1/4 top-20 size-64 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="absolute bottom-20 right-1/4 size-96 rounded-full bg-blue-500/10 blur-3xl" />
       </div>
 
       <motion.div
-        className="relative max-w-7xl mx-auto px-4 py-32 text-center z-10"
+        className="relative z-10 mx-auto max-w-7xl px-4 py-32 text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -27,27 +27,27 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="inline-block px-6 py-2 bg-blue-500/10 rounded-full mb-8"
+          className="mb-8 inline-block rounded-full bg-blue-500/10 px-6 py-2"
         >
-          <span className="text-blue-400 font-medium">
+          <span className="font-medium text-blue-400">
             Next Generation Storage Solutions
           </span>
         </motion.div>
 
         <motion.h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight tracking-tight"
+          className="mb-6 text-4xl font-bold leading-tight tracking-tight md:text-6xl lg:text-7xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
           Secure Storage Solutions
-          <span className="block gradient-text font-extrabold">
+          <span className="gradient-text block font-extrabold">
             for Every Need
           </span>
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+          className="mx-auto mb-12 max-w-3xl text-xl leading-relaxed text-slate-300 md:text-2xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
@@ -61,25 +61,25 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
           <Button
             size="lg"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 h-12 text-lg group relative overflow-hidden"
+            className="group relative h-12 overflow-hidden bg-blue-600 px-8 text-lg text-white hover:bg-blue-700"
           >
             <span className="relative z-10 flex items-center">
               Get Started Now
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 transform transition-transform group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 transition-transform group-hover:scale-105" />
           </Button>
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-slate-700 hover:border-blue-500 text-white hover:text-blue-400 px-8 h-12 text-lg transition-colors"
+            className="h-12 border-2 border-slate-700 px-8 text-lg text-black transition-colors hover:border-blue-500 hover:text-blue-400"
           >
             Take a Virtual Tour
           </Button>
@@ -96,7 +96,7 @@ export function Hero() {
             alt="Dashboard Preview"
             width={1200}
             height={600}
-            className="rounded-xl shadow-2xl shadow-blue-500/20 border border-slate-800"
+            className="rounded-xl border border-slate-800 shadow-2xl shadow-blue-500/20"
           />
         </motion.div>
       </motion.div>

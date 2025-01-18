@@ -114,16 +114,16 @@ export function Features() {
               <Card className="feature-card-hover overflow-hidden border-slate-800 bg-slate-900/50">
                 <CardContent className="relative p-6">
                   <div
-                    className={`absolute right-0 top-0 size-32 bg-gradient-to-bl ${feature.gradient} rounded-bl-full opacity-10`}
+                    className={`absolute right-0 top-0 size-32 bg-gradient-to-bl ${feature.gradient} rounded-bl-full bg-black/10`}
                   />
                   <div
-                    className={`size-12 ${feature.color} mb-4 flex items-center justify-center rounded-xl opacity-10`}
+                    className={`size-12 ${feature.color} mb-4 flex items-center justify-center rounded-xl`}
                   >
                     <feature.icon
                       className={`size-6 ${feature.color} text-opacity-90`}
                     />
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold">
+                  <h3 className="mb-2 text-xl font-semibold text-white">
                     {feature.title}
                   </h3>
                   <p className="text-slate-400">{feature.description}</p>

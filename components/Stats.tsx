@@ -33,9 +33,9 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8">
+    <section className="px-4 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 md:grid-cols-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -44,10 +44,12 @@ export function Stats() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Card className="bg-slate-900/50 border-slate-800 feature-card-hover">
+              <Card className="feature-card-hover border-slate-800 bg-slate-900/50">
                 <CardContent className="p-6 text-center">
-                  <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-4`} />
-                  <div className="text-3xl font-bold mb-2">{stat.value}</div>
+                  <stat.icon className={`size-8 ${stat.color} mx-auto mb-4`} />
+                  <div className="mb-2 text-3xl font-bold text-white">
+                    {stat.value}
+                  </div>
                   <div className="text-slate-400">{stat.label}</div>
                 </CardContent>
               </Card>

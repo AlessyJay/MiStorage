@@ -50,13 +50,13 @@ const plans = [
 
 export function Pricing() {
   return (
-    <section className="py-24 px-4 relative overflow-hidden" id="pricing">
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl" />
+    <section className="relative overflow-hidden px-4 py-24" id="pricing">
+      <div className="absolute left-1/4 top-0 size-96 rounded-full bg-blue-500/10 blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 size-96 rounded-full bg-purple-500/10 blur-3xl" />
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="relative mx-auto max-w-7xl">
         <motion.div
-          className="text-center mb-16"
+          className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -66,21 +66,21 @@ export function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-block px-6 py-2 bg-blue-500/10 rounded-full mb-8"
+            className="mb-8 inline-block rounded-full bg-blue-500/10 px-6 py-2"
           >
-            <span className="text-blue-400 font-medium">Pricing</span>
+            <span className="font-medium text-blue-400">Pricing</span>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
             Simple, transparent
             <span className="gradient-text"> pricing</span>
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-slate-400">
             Choose the perfect storage solution for your needs with our flexible
             pricing options.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-3">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -90,31 +90,35 @@ export function Pricing() {
               transition={{ delay: index * 0.2 }}
             >
               <Card
-                className={`relative bg-slate-900/50 border-slate-800 feature-card-hover overflow-hidden ${
+                className={`feature-card-hover relative overflow-hidden border-slate-800 bg-slate-900/50 ${
                   plan.popular ? "border-blue-500/50" : ""
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute top-0 right-0">
-                    <div className="text-xs font-medium bg-blue-500 text-white px-3 py-1 rounded-bl-lg">
+                  <div className="absolute right-0 top-0">
+                    <div className="rounded-bl-lg bg-blue-500 px-3 py-1 text-xs font-medium text-white">
                       Popular
                     </div>
                   </div>
                 )}
                 <CardContent className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-slate-400 mb-4">{plan.description}</p>
+                  <h3 className="mb-2 text-2xl font-bold text-white">
+                    {plan.name}
+                  </h3>
+                  <p className="mb-4 text-slate-400">{plan.description}</p>
                   <div className="mb-6">
-                    <span className="text-4xl font-bold">${plan.price}</span>
+                    <span className="text-4xl font-bold text-white">
+                      ${plan.price}
+                    </span>
                     <span className="text-slate-400">/month</span>
                   </div>
-                  <ul className="space-y-3 mb-6">
+                  <ul className="mb-6 space-y-3">
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
                         className="flex items-center text-slate-300"
                       >
-                        <Check className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
+                        <Check className="mr-2 size-5 shrink-0 text-blue-500" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -122,8 +126,8 @@ export function Pricing() {
                   <Button
                     className={`w-full ${
                       plan.popular
-                        ? "bg-blue-600 hover:bg-blue-700 text-white"
-                        : "bg-slate-800 hover:bg-slate-700 text-slate-300"
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "bg-slate-800 text-slate-300 hover:bg-slate-700"
                     }`}
                   >
                     Get Started
