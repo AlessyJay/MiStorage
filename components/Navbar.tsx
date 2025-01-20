@@ -78,15 +78,11 @@ export function Navbar() {
             </div>
 
             <div className="hidden items-center space-x-4 md:flex">
-              <Button
-                variant="ghost"
-                className="text-sm font-medium text-slate-300 hover:text-blue-400"
-              >
-                Sign In
-              </Button>
-              <Button className="rounded-full bg-blue-600 px-6 font-medium text-white hover:bg-blue-700">
-                Get Started
-              </Button>
+              <Link href="/admin/dashboard">
+                <Button className="rounded-full bg-blue-600 px-6 font-medium text-white hover:bg-blue-700">
+                  Get Started
+                </Button>
+              </Link>
             </div>
 
             <div className="md:hidden">
@@ -127,15 +123,11 @@ export function Navbar() {
                   </Link>
                 ))}
                 <div className="space-y-4 pt-4">
-                  <Button
-                    variant="ghost"
-                    className="w-full text-sm font-medium text-slate-300 hover:text-blue-400"
-                  >
-                    Sign In
-                  </Button>
-                  <Button className="w-full rounded-full bg-blue-600 font-medium text-white hover:bg-blue-700">
-                    Get Started
-                  </Button>
+                  <Link href="/admin/dashboard">
+                    <Button className="w-full rounded-full bg-blue-600 font-medium text-white hover:bg-blue-700">
+                      Get Started
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
