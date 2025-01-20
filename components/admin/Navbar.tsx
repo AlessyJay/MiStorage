@@ -137,7 +137,9 @@ export function AdminNav() {
 
       <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
         {menuItems.map((item) => {
-          const isActive = pathname.startsWith(item.href);
+          const isActive =
+            pathname === item.href ||
+            item.subItems?.some((sub) => pathname === sub.href);
           return (
             <div key={item.title}>
               <motion.div

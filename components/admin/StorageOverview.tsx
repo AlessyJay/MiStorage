@@ -9,16 +9,21 @@ Chart.register(...registerables);
 
 export function StorageOverview() {
   const chartRef = useRef<HTMLCanvasElement>(null);
+  const chartInstanceRef = useRef<Chart | null>(null);
 
   useEffect(() => {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext("2d");
       if (ctx) {
+        if (chartInstanceRef.current) {
+          chartInstanceRef.current.destroy();
+        }
+
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, "rgba(139, 92, 246, 0.2)");
         gradient.addColorStop(1, "rgba(139, 92, 246, 0)");
 
-        new Chart(chartRef.current, {
+        chartInstanceRef.current = new Chart(chartRef.current, {
           type: "line",
           data: {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
@@ -65,6 +70,13 @@ export function StorageOverview() {
         });
       }
     }
+
+    return () => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.destroy();
+        chartInstanceRef.current = null;
+      }
+    };
   }, []);
 
   return (
