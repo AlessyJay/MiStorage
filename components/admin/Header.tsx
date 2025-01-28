@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Bell, Plus } from "lucide-react";
+import { Bell } from "lucide-react";
 
 export function AdminHeader() {
   return (
@@ -28,10 +28,6 @@ export function AdminHeader() {
         >
           <Bell className="size-5" />
           <span className="absolute right-2 top-2 size-2 rounded-full bg-blue-500" />
-        </Button>
-        <Button className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
-          <Plus className="size-4" />
-          Add New Unit
         </Button>
         <Avatar className="size-10 border-2 border-blue-500/20">
           <AvatarImage src="/vercel.svg" />

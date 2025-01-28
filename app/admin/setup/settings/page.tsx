@@ -11,10 +11,37 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import ConfigureSettings from "@/components/admin/settings/ConfigureSettings";
-import { Notebook, ReceiptText } from "lucide-react";
+import { Eye, FileText, Notebook, Plus, ReceiptText } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 export default function SettingsPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [instructions, setInstructions] = useState("");
+  const [autoLockoutApproval, setAutoLockoutApproval] = useState(false);
+  const [manualLockoutApproval, setManualLockoutApproval] = useState(false);
+  const [storageAgreements] = useState([
+    { id: 1, name: "Storage Unit A-101", agreement: "Agreement details..." },
+    { id: 2, name: "Storage Unit B-205", agreement: "Agreement details..." },
+    { id: 3, name: "Storage Unit C-303", agreement: "Agreement details..." },
+    { id: 4, name: "Storage Unit D-404", agreement: "Agreement details..." },
+  ]);
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+    transition: { duration: 0.3 },
+  };
 
   return (
     <motion.div
@@ -34,13 +61,20 @@ export default function SettingsPage() {
             </div>
 
             <div className="space-x-5">
-              <Button className="bg-blue-600 text-white hover:bg-blue-700">
-                <ReceiptText />
-                Billing History
-              </Button>
-              <Button className="bg-blue-600 text-white hover:bg-blue-700">
-                <Notebook />
-                Billing History
+              <Link href="/admin/setup/settings/billing-history">
+                <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                  <ReceiptText />
+                  Billing History
+                </Button>
+              </Link>
+              <Link href="/admin/setup/settings/billing-information">
+                <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                  <Notebook />
+                  Billing Information
+                </Button>
+              </Link>
+              <Button variant="outline" onClick={() => setIsDialogOpen(true)}>
+                Configure Settings
               </Button>
             </div>
 
@@ -50,34 +84,164 @@ export default function SettingsPage() {
             />
           </header>
 
+          <hr className="mt-4 w-full border-muted-foreground" />
+
           {/* Content Area */}
-          <div className="mt-6 flex-1 overflow-y-auto">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="border-slate-700 bg-slate-800/50">
+          <ScrollArea className="mt-6 flex-1 rounded-2xl">
+            <div className="grid gap-6 md:grid-cols-2">
+              <motion.div {...fadeInUp}>
+                <Card className="border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm transition-all hover:bg-slate-800/80">
+                  <CardHeader>
+                    <CardTitle className="text-white">
+                      New Renter Instructions
+                    </CardTitle>
+                    <CardDescription>
+                      Update instructions for new renters
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      value={instructions}
+                      onChange={(e) => setInstructions(e.target.value)}
+                      placeholder="Enter instructions for new renters..."
+                      className="min-h-[200px] bg-slate-900/50 text-white placeholder:text-slate-500"
+                    />
+                    <Button className="mt-4 w-full bg-blue-600/90 backdrop-blur-sm transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-700/20">
+                      Save Instructions
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
+                <Card className="border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm transition-all hover:bg-slate-800/80">
+                  <CardHeader>
+                    <CardTitle className="text-white">
+                      Lockout Approval Settings
+                    </CardTitle>
+                    <CardDescription>
+                      Configure automatic and manual lockout approval
+                      requirements
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="rounded-lg bg-slate-900/50 p-4 backdrop-blur-sm">
+                      <div className="flex items-start space-x-3">
+                        <Checkbox
+                          id="auto-lockout"
+                          checked={autoLockoutApproval}
+                          onCheckedChange={setAutoLockoutApproval}
+                          className="mt-1 bg-white"
+                        />
+                        <div>
+                          <label
+                            htmlFor="auto-lockout"
+                            className="text-sm font-medium text-white"
+                          >
+                            Require approval for automatic lockout removal
+                          </label>
+                          <p className="mt-1 text-sm text-slate-400">
+                            When a locked out customer pays their entire past
+                            due balance, they will stay on the Lock Out Report
+                            until manually approved.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="rounded-lg bg-slate-900/50 p-4 backdrop-blur-sm">
+                      <div className="flex items-start space-x-3">
+                        <Checkbox
+                          id="manual-lockout"
+                          checked={manualLockoutApproval}
+                          onCheckedChange={setManualLockoutApproval}
+                          className="mt-1 bg-white"
+                        />
+                        <div>
+                          <label
+                            htmlFor="manual-lockout"
+                            className="text-sm font-medium text-white"
+                          >
+                            Require approval for manual lockout removal
+                          </label>
+                          <p className="mt-1 text-sm text-slate-400">
+                            A customer unlocked by a manager will stay on the
+                            Lock Out Report until manually approved. When
+                            unchecked, it will be marked as approved by the
+                            manager that removed the lock out.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <Button className="w-fit">Update Settings</Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
+            <motion.div {...fadeInUp} transition={{ delay: 0.1 }}>
+              <Card className="mt-6 border-slate-800 bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-sm transition-all hover:bg-slate-800/80">
                 <CardHeader>
-                  <CardTitle className="text-white">General Settings</CardTitle>
-                  <CardDescription>
-                    Configure basic facility settings
-                  </CardDescription>
+                  <CardTitle className="flex items-center justify-between text-white">
+                    <span>Storage Agreements</span>
+                    <Link href="/admin/setup/settings/new-storage">
+                      <Button
+                        size="sm"
+                        className="bg-blue-600 text-white backdrop-blur-sm transition-all hover:bg-blue-700 hover:shadow-lg hover:shadow-emerald-700/20"
+                      >
+                        <Plus className="mr-2 size-4" />
+                        New Storage
+                      </Button>
+                    </Link>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-slate-400">
-                    Configure your facility&apos;s locale, timezone, and other
-                    basic settings.
-                  </p>
-                  <Button
-                    variant="outline"
-                    className="mt-4 w-full"
-                    onClick={() => setIsDialogOpen(true)}
-                  >
-                    Configure Settings
-                  </Button>
+                  <div className="space-y-3">
+                    {storageAgreements.map((storage) => (
+                      <div
+                        key={storage.id}
+                        className="flex items-center justify-between rounded-lg bg-slate-900/50 p-3 backdrop-blur-sm transition-all hover:bg-slate-900/80"
+                      >
+                        <span className="text-white">{storage.name}</span>
+                        <div className="flex gap-2">
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="border-slate-700 bg-slate-800/50 text-slate-300 backdrop-blur-sm transition-all hover:bg-slate-700 hover:text-white"
+                              >
+                                <FileText className="mr-2 size-4" />
+                                View
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="border-slate-700 bg-slate-800/90 backdrop-blur-sm">
+                              <DialogHeader>
+                                <DialogTitle className="text-white">
+                                  {storage.name} Agreement
+                                </DialogTitle>
+                              </DialogHeader>
+                              <div className="mt-4 text-slate-300">
+                                {storage.agreement}
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="border-slate-700 bg-slate-800/50 text-slate-300 backdrop-blur-sm transition-all hover:bg-slate-700 hover:text-white"
+                          >
+                            <Eye className="mr-2 size-4" />
+                            Preview PDF
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
-
-              {/* Add more setting cards here */}
-            </div>
-          </div>
+            </motion.div>
+          </ScrollArea>
         </div>
       </div>
     </motion.div>

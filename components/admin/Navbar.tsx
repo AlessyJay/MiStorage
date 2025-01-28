@@ -100,7 +100,7 @@ export function AdminNav() {
         width: isCollapsed ? 80 : 280,
         transition: { duration: 0.3, ease: "easeInOut" },
       }}
-      className="flex h-screen flex-col gap-4 border-r border-slate-800 bg-slate-900 p-4"
+      className="flex h-screen flex-col gap-4 border-r border-slate-800 bg-slate-900 p-4 max-sm:hidden"
     >
       <div className="flex h-12 items-center justify-between">
         <motion.div
@@ -137,9 +137,12 @@ export function AdminNav() {
 
       <div className="flex flex-1 flex-col gap-2 overflow-y-auto">
         {menuItems.map((item) => {
+          // const isActive =
+          //   pathname === item.href ||
+          //   item.subItems?.some((sub) => pathname === sub.href);
           const isActive =
-            pathname === item.href ||
-            item.subItems?.some((sub) => pathname === sub.href);
+            pathname === item.href || // Exact match
+            (pathname.startsWith(item.href + "/") && item.href !== "/admin");
           return (
             <div key={item.title}>
               <motion.div
@@ -188,7 +191,10 @@ export function AdminNav() {
                       className="ml-9 mt-2 flex flex-col gap-2"
                     >
                       {item.subItems.map((subItem) => {
-                        const isSubItemActive = pathname === subItem.href;
+                        // const isSubItemActive = pathname === subItem.href;
+                        const isSubItemActive =
+                          pathname === subItem.href ||
+                          pathname.startsWith(subItem.href + "/");
                         return (
                           <Link key={subItem.title} href={subItem.href}>
                             <motion.div

@@ -1,0 +1,91 @@
+.codex-editor__redactor {
+  padding-bottom: 100px !important;
+}
+
+.ce-popover__container {
+  background: #1e293b;
+  border: none;
+}
+
+.ce-block__content,
+.ce-toolbar__content {
+  max-width: calc(100% - 80px) !important;
+}
+
+.cdx-block {
+  max-width: 100% !important;
+}
+
+.ce-toolbar__plus {
+  color: #e2e8f0;
+}
+
+.ce-toolbar__settings-btn {
+  color: #e2e8f0;
+}
+
+.cdx-marker {
+  background: rgba(245, 235, 111, 0.29);
+  padding: 3px 0;
+}
+
+.ce-inline-toolbar {
+  background-color: #1e293b;
+  border-color: #475569;
+}
+
+.ce-inline-toolbar__dropdown {
+  border-color: #475569;
+}
+
+.ce-inline-tool {
+  color: #e2e8f0;
+}
+
+.ce-inline-tool:hover {
+  background-color: #334155;
+}
+
+.ce-conversion-toolbar {
+  background-color: #1e293b;
+  border-color: #475569;
+}
+
+.ce-conversion-tool {
+  color: #e2e8f0;
+}
+
+.ce-conversion-tool:hover {
+  background-color: #334155;
+}
+
+.ce-conversion-toolbar__label {
+  color: #94a3b8;
+}
+
+.cdx-search-field {
+  border-color: #475569;
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.cdx-search-field::placeholder {
+  color: #94a3b8;
+}
+
+.ce-popover {
+  background-color: #1e293b;
+  border-color: #475569;
+}
+
+.ce-popover-item {
+  color: #e2e8f0;
+}
+
+.ce-popover-item:hover {
+  background-color: #334155;
+}
+
+.image-tool__caption {
+  display: none;
+}
