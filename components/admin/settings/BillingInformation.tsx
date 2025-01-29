@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { CreditCard, Trash2, Edit, Plus, PenBox } from "lucide-react";
+import { CreditCard, Trash2, Edit, Plus } from "lucide-react";
 
 interface PaymentCard {
   id: string;

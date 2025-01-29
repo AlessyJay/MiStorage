@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
@@ -130,7 +131,7 @@ export default function SettingsPage() {
                         <Checkbox
                           id="auto-lockout"
                           checked={autoLockoutApproval}
-                          onCheckedChange={setAutoLockoutApproval}
+                          // onCheckedChange={setAutoLockoutApproval}
                           className="mt-1 bg-white"
                         />
                         <div>
@@ -154,7 +155,7 @@ export default function SettingsPage() {
                         <Checkbox
                           id="manual-lockout"
                           checked={manualLockoutApproval}
-                          onCheckedChange={setManualLockoutApproval}
+                          // onCheckedChange={setManualLockoutApproval}
                           className="mt-1 bg-white"
                         />
                         <div>

@@ -44,7 +44,7 @@ export function ContactForm() {
           id="name"
           name="name"
           required
-          className="mt-1 bg-slate-800 border-slate-700 text-slate-300"
+          className="mt-1 border-slate-700 bg-slate-800 text-slate-300"
         />
       </div>
       <div>
@@ -59,7 +59,7 @@ export function ContactForm() {
           id="email"
           name="email"
           required
-          className="mt-1 bg-slate-800 border-slate-700 text-slate-300"
+          className="mt-1 border-slate-700 bg-slate-800 text-slate-300"
         />
       </div>
       <div>
@@ -74,12 +74,12 @@ export function ContactForm() {
           name="message"
           rows={4}
           required
-          className="mt-1 bg-slate-800 border-slate-700 text-slate-300"
+          className="mt-1 border-slate-700 bg-slate-800 text-slate-300"
         />
       </div>
       <Button
         type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+        className="w-full bg-blue-500 text-white hover:bg-blue-600"
         disabled={isSubmitting}
       >
         {isSubmitting ? "Sending..." : "Send Message"}
